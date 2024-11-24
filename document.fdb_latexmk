@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1732442843.59745 "/home/matvey/Рабочий стол/C/myDiffCalculus/document.tex" "document.pdf" "document" 1732442844.00932 0
+["pdflatex"] 1732444731.5297 "/home/matvey/Рабочий стол/C/myDiffCalculus/document.tex" "document.pdf" "document" 1732444731.8743 0
   "/etc/texmf/web2c/texmf.cnf" 1731662935.12612 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/matvey/Рабочий стол/C/myDiffCalculus/document.tex" 1732442843.3421 362 564ba3e5c584662fade5b9787c397d96 ""
+  "/home/matvey/Рабочий стол/C/myDiffCalculus/document.tex" 1732444731.1435 267 f0acd835526ba5717f7bc26b480b012c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -23,8 +23,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1732266597.11575 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1732266731 8212433 ff152930059228c2155621f02cad6cab ""
-  "document.aux" 1732442843.97509 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "document.tex" 1732442843.3421 362 564ba3e5c584662fade5b9787c397d96 ""
+  "document.aux" 1732444731.84449 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "document.tex" 1732444731.1435 267 f0acd835526ba5717f7bc26b480b012c ""
   (generated)
   "document.aux"
   "document.log"

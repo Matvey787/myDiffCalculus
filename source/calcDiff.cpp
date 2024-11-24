@@ -52,37 +52,3 @@ static node_t* calcDiff(node_t* node)
         break;
     }
 }
-
-node_t* newNode(types type, const char* variable, double number, node_t* node_l, node_t* node_r){
-    node_t* varNewNode = (node_t*)calloc(1, sizeof(node_t));
-    varNewNode->type = type;
-    varNewNode->number = number;
-    strcpy(varNewNode->variable, variable);
-    varNewNode->left = node_l;
-    varNewNode->right = node_r;
-    return varNewNode;
-}
-
-node_t* copyNode(node_t* node){
-    assert(node != nullptr);
-    node_t* varCopyNode = (node_t*)calloc(1, sizeof(node_t));
-    assert(varCopyNode != nullptr);
-    varCopyNode->type = node->type;
-    varCopyNode->number = node->number;
-    strcpy(varCopyNode->variable, node->variable);
-
-    if (node->left != nullptr)
-    {
-        varCopyNode->left = copyNode(node->left);
-    }
-    else
-        varCopyNode->left = nullptr;
-
-    if (node->right != nullptr)
-    {
-        varCopyNode->right = copyNode(node->right);
-    }  
-    else
-        varCopyNode->right = nullptr;
-    return varCopyNode;
-}

@@ -23,7 +23,8 @@ struct node_t
 
 void createTree(char** buffer, node_t* node);
 error delTree(node_t* node);
+node_t* newNode(types type, const char* variable, double number, node_t* node_l, node_t* node_r);
+node_t* copyNode(node_t* node);
 
-//void printLeafDef(const node_t* node, const char* leafName, def_t* defParts, size_t i_dP);
 
 #endif
