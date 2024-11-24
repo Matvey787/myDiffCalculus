@@ -1,0 +1,22 @@
+digraph
+{ 
+rankdir=HR;
+
+node0x5040000005d0 [ shape=record, color = red rank = 1, label= "{ 0x5040000005d0 | / | {<n0x5040000005d0_l> left | <n0x5040000005d0_r> right}} " ];
+node0x504000000590 [ shape=record, color = blue rank = 2, label= "{ 0x504000000590 | number | -1 | {<n0x504000000590_l> left | <n0x504000000590_r> right}} " ];
+node0x5040000005d0:<n0x5040000005d0_l>:s -> node0x504000000590:n [ color = black; ]
+node0x504000000410 [ shape=record, color = red rank = 3, label= "{ 0x504000000410 | * | {<n0x504000000410_l> left | <n0x504000000410_r> right}} " ];
+node0x504000000350 [ shape=record, color = red rank = 4, label= "{ 0x504000000350 | - | {<n0x504000000350_l> left | <n0x504000000350_r> right}} " ];
+node0x504000000390 [ shape=record, color = blue rank = 5, label= "{ 0x504000000390 | variable | x | {<n0x504000000390_l> left | <n0x504000000390_r> right}} " ];
+node0x504000000350:<n0x504000000350_l>:s -> node0x504000000390:n [ color = black; ]
+node0x5040000003d0 [ shape=record, color = blue rank = 6, label= "{ 0x5040000003d0 | number | 12 | {<n0x5040000003d0_l> left | <n0x5040000003d0_r> right}} " ];
+node0x504000000350:<n0x504000000350_r>:s -> node0x5040000003d0:n [ color = black; ]
+node0x504000000410:<n0x504000000410_l>:s -> node0x504000000350:n [ color = black; ]
+node0x504000000190 [ shape=record, color = red rank = 5, label= "{ 0x504000000190 | - | {<n0x504000000190_l> left | <n0x504000000190_r> right}} " ];
+node0x5040000001d0 [ shape=record, color = blue rank = 6, label= "{ 0x5040000001d0 | variable | x | {<n0x5040000001d0_l> left | <n0x5040000001d0_r> right}} " ];
+node0x504000000190:<n0x504000000190_l>:s -> node0x5040000001d0:n [ color = black; ]
+node0x504000000210 [ shape=record, color = blue rank = 7, label= "{ 0x504000000210 | number | 12 | {<n0x504000000210_l> left | <n0x504000000210_r> right}} " ];
+node0x504000000190:<n0x504000000190_r>:s -> node0x504000000210:n [ color = black; ]
+node0x504000000410:<n0x504000000410_r>:s -> node0x504000000190:n [ color = black; ]
+node0x5040000005d0:<n0x5040000005d0_r>:s -> node0x504000000410:n [ color = black; ]
+}
