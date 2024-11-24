@@ -2,21 +2,37 @@ digraph
 { 
 rankdir=HR;
 
-node0x5040000005d0 [ shape=record, color = red rank = 1, label= "{ 0x5040000005d0 | / | {<n0x5040000005d0_l> left | <n0x5040000005d0_r> right}} " ];
-node0x504000000590 [ shape=record, color = blue rank = 2, label= "{ 0x504000000590 | number | -1 | {<n0x504000000590_l> left | <n0x504000000590_r> right}} " ];
-node0x5040000005d0:<n0x5040000005d0_l>:s -> node0x504000000590:n [ color = black; ]
-node0x504000000410 [ shape=record, color = red rank = 3, label= "{ 0x504000000410 | * | {<n0x504000000410_l> left | <n0x504000000410_r> right}} " ];
-node0x504000000350 [ shape=record, color = red rank = 4, label= "{ 0x504000000350 | - | {<n0x504000000350_l> left | <n0x504000000350_r> right}} " ];
-node0x504000000390 [ shape=record, color = blue rank = 5, label= "{ 0x504000000390 | variable | x | {<n0x504000000390_l> left | <n0x504000000390_r> right}} " ];
-node0x504000000350:<n0x504000000350_l>:s -> node0x504000000390:n [ color = black; ]
-node0x5040000003d0 [ shape=record, color = blue rank = 6, label= "{ 0x5040000003d0 | number | 12 | {<n0x5040000003d0_l> left | <n0x5040000003d0_r> right}} " ];
-node0x504000000350:<n0x504000000350_r>:s -> node0x5040000003d0:n [ color = black; ]
-node0x504000000410:<n0x504000000410_l>:s -> node0x504000000350:n [ color = black; ]
-node0x504000000190 [ shape=record, color = red rank = 5, label= "{ 0x504000000190 | - | {<n0x504000000190_l> left | <n0x504000000190_r> right}} " ];
-node0x5040000001d0 [ shape=record, color = blue rank = 6, label= "{ 0x5040000001d0 | variable | x | {<n0x5040000001d0_l> left | <n0x5040000001d0_r> right}} " ];
-node0x504000000190:<n0x504000000190_l>:s -> node0x5040000001d0:n [ color = black; ]
-node0x504000000210 [ shape=record, color = blue rank = 7, label= "{ 0x504000000210 | number | 12 | {<n0x504000000210_l> left | <n0x504000000210_r> right}} " ];
-node0x504000000190:<n0x504000000190_r>:s -> node0x504000000210:n [ color = black; ]
-node0x504000000410:<n0x504000000410_r>:s -> node0x504000000190:n [ color = black; ]
-node0x5040000005d0:<n0x5040000005d0_r>:s -> node0x504000000410:n [ color = black; ]
+node0x504000000750 [ shape=record, color = red rank = 1, label= "{ 0x504000000750 | / | {<n0x504000000750_l> left | <n0x504000000750_r> right}} " ];
+node0x504000000710 [ shape=record, color = red rank = 2, label= "{ 0x504000000710 | - | {<n0x504000000710_l> left | <n0x504000000710_r> right}} " ];
+node0x5040000006d0 [ shape=record, color = red rank = 3, label= "{ 0x5040000006d0 | * | {<n0x5040000006d0_l> left | <n0x5040000006d0_r> right}} " ];
+node0x5040000003d0 [ shape=record, color = blue rank = 4, label= "{ 0x5040000003d0 | number | -1 | {<n0x5040000003d0_l> left | <n0x5040000003d0_r> right}} " ];
+node0x5040000006d0:<n0x5040000006d0_l>:s -> node0x5040000003d0:n [ color = black; ]
+node0x504000000610 [ shape=record, color = red rank = 5, label= "{ 0x504000000610 | - | {<n0x504000000610_l> left | <n0x504000000610_r> right}} " ];
+node0x504000000650 [ shape=record, color = blue rank = 6, label= "{ 0x504000000650 | variable | x | {<n0x504000000650_l> left | <n0x504000000650_r> right}} " ];
+node0x504000000610:<n0x504000000610_l>:s -> node0x504000000650:n [ color = black; ]
+node0x504000000690 [ shape=record, color = blue rank = 7, label= "{ 0x504000000690 | number | 12 | {<n0x504000000690_l> left | <n0x504000000690_r> right}} " ];
+node0x504000000610:<n0x504000000610_r>:s -> node0x504000000690:n [ color = black; ]
+node0x5040000006d0:<n0x5040000006d0_r>:s -> node0x504000000610:n [ color = black; ]
+node0x504000000710:<n0x504000000710_l>:s -> node0x5040000006d0:n [ color = black; ]
+node0x504000000790 [ shape=record, color = red rank = 4, label= "{ 0x504000000790 | - | {<n0x504000000790_l> left | <n0x504000000790_r> right}} " ];
+node0x5040000007d0 [ shape=record, color = blue rank = 5, label= "{ 0x5040000007d0 | number | 5 | {<n0x5040000007d0_l> left | <n0x5040000007d0_r> right}} " ];
+node0x504000000790:<n0x504000000790_l>:s -> node0x5040000007d0:n [ color = black; ]
+node0x504000000810 [ shape=record, color = blue rank = 6, label= "{ 0x504000000810 | variable | x | {<n0x504000000810_l> left | <n0x504000000810_r> right}} " ];
+node0x504000000790:<n0x504000000790_r>:s -> node0x504000000810:n [ color = black; ]
+node0x504000000710:<n0x504000000710_r>:s -> node0x504000000790:n [ color = black; ]
+node0x504000000750:<n0x504000000750_l>:s -> node0x504000000710:n [ color = black; ]
+node0x504000000590 [ shape=record, color = red rank = 3, label= "{ 0x504000000590 | * | {<n0x504000000590_l> left | <n0x504000000590_r> right}} " ];
+node0x5040000004d0 [ shape=record, color = red rank = 4, label= "{ 0x5040000004d0 | - | {<n0x5040000004d0_l> left | <n0x5040000004d0_r> right}} " ];
+node0x504000000510 [ shape=record, color = blue rank = 5, label= "{ 0x504000000510 | variable | x | {<n0x504000000510_l> left | <n0x504000000510_r> right}} " ];
+node0x5040000004d0:<n0x5040000004d0_l>:s -> node0x504000000510:n [ color = black; ]
+node0x504000000550 [ shape=record, color = blue rank = 6, label= "{ 0x504000000550 | number | 12 | {<n0x504000000550_l> left | <n0x504000000550_r> right}} " ];
+node0x5040000004d0:<n0x5040000004d0_r>:s -> node0x504000000550:n [ color = black; ]
+node0x504000000590:<n0x504000000590_l>:s -> node0x5040000004d0:n [ color = black; ]
+node0x504000000290 [ shape=record, color = red rank = 5, label= "{ 0x504000000290 | - | {<n0x504000000290_l> left | <n0x504000000290_r> right}} " ];
+node0x5040000002d0 [ shape=record, color = blue rank = 6, label= "{ 0x5040000002d0 | variable | x | {<n0x5040000002d0_l> left | <n0x5040000002d0_r> right}} " ];
+node0x504000000290:<n0x504000000290_l>:s -> node0x5040000002d0:n [ color = black; ]
+node0x504000000310 [ shape=record, color = blue rank = 7, label= "{ 0x504000000310 | number | 12 | {<n0x504000000310_l> left | <n0x504000000310_r> right}} " ];
+node0x504000000290:<n0x504000000290_r>:s -> node0x504000000310:n [ color = black; ]
+node0x504000000590:<n0x504000000590_r>:s -> node0x504000000290:n [ color = black; ]
+node0x504000000750:<n0x504000000750_r>:s -> node0x504000000590:n [ color = black; ]
 }
