@@ -25,8 +25,8 @@ int main(int argc, char *argv[]){
     }
     else 
     {
-        sprintf(directory, "%s/", c_default_directory_for_saving_pictures);
-        system("mkdir -p png_files");
+        sprintf(directory, "%s", c_default_directory_for_saving_pictures);
+        system("mkdir -p png_files"); // FIXME
     }
 
     char* buffer = nullptr;
@@ -39,7 +39,19 @@ int main(int argc, char *argv[]){
     char* ptrStartBuff = buffer;
 
     node_t* mathTree = (node_t*)calloc(1, sizeof(node_t));
-    createTree(&(buffer), mathTree);
+    node_t* nodes = (node_t*)calloc(60, sizeof(node_t));
+    
+    if (*buffer++ == '$')
+    {
+        free(mathTree);
+        //mathTree = createTree2(&buffer);
+        mathTree = createTree3(nodes, buffer);
+        printf("%lg\n", mathTree->number);
+    }
+    else
+    {
+        createTree(&(buffer), mathTree);
+    }
 
 
     writeDotFile(mathTree, "mathExp.dot");
@@ -51,6 +63,13 @@ int main(int argc, char *argv[]){
     writeDotFile(mathTree, "mathExp.dot");
     writePngFile("mathExp.dot", directory);
     rewLatexFile(mathTree, "document.tex");
+
+    reduceTree(mathTree, nullptr, 'c');
+
+    mathTree = getDiff(mathTree);
+    writeDotFile(mathTree, "mathExp.dot");
+    writePngFile("mathExp.dot", directory);
+    rewLatexFile(mathTree, "document.tex");
     
     reduceTree(mathTree, nullptr, 'c');
     
@@ -58,7 +77,14 @@ int main(int argc, char *argv[]){
     writePngFile("mathExp.dot", directory);
     rewLatexFile(mathTree, "document.tex");
 
+    reduceTree(mathTree, nullptr, 'c');
+
+    writeDotFile(mathTree, "mathExp.dot");
+    writePngFile("mathExp.dot", directory);
+    rewLatexFile(mathTree, "document.tex");
+
     delTree(mathTree);
     //delTree(array[0]);
     free(ptrStartBuff);
+    free(nodes);
 }

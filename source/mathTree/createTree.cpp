@@ -25,8 +25,6 @@ void createTree(char** buffer, node_t* node){
     double number = 0;
 
     while (isspace(**buffer)) *buffer += 1;
-   
-    while (isspace(**buffer)) *buffer += 1;
 
     if (**buffer == '(')
     {
@@ -38,11 +36,14 @@ void createTree(char** buffer, node_t* node){
             createTree(buffer, node->left);
             if (**buffer == '\n')
                 return;
+
             while (isspace(**buffer)) *buffer += 1;
+
             node->type = chooseType(**buffer);
             node->number = NAN;
             strcpy(node->variable, "no var");
             *buffer += 1;
+            
             node->right = (node_t*)calloc(1, sizeof(node_t));
             createTree(buffer, node->right);
             if (**buffer == '\n')
@@ -97,6 +98,10 @@ types chooseType(char symbol){
     if (symbol == '/')
     {
         return DIV;
+    }
+    if (symbol == '^')
+    {
+        return POW;
     }
     return NUM;
 }

@@ -9,7 +9,16 @@ enum types {
     DIV=3,
     MUL=4,
     NUM=5,
-    VAR=6
+    VAR=6,
+    POW=7,
+    SIN=8,
+    COS=9,
+    LOG=10,
+
+    // only used in tokens
+    LCIB=11,
+    RCIB=12,
+    EOT=13
 };
 
 struct node_t
@@ -22,9 +31,12 @@ struct node_t
 };
 
 void createTree(char** buffer, node_t* node);
+node_t* createTree2(char** buffer);
+node_t* createTree3(node_t* nodes, char* buffer);
+
 error delTree(node_t* node);
 node_t* newNode(types type, const char* variable, double number, node_t* node_l, node_t* node_r);
+node_t* copySubtree(node_t* node);
 node_t* copyNode(node_t* node);
-
 
 #endif

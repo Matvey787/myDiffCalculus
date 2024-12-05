@@ -54,12 +54,43 @@ static void wrTreeToFile(node_t* node, FILE* wFile){
         fprintf(wFile, "}");
         break;
     case MUL:
-        fprintf(wFile, "(");
+        //fprintf(wFile, "(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, " \\cdot ");
         wrTreeToFile(node->right, wFile);
-        fprintf(wFile, ")");
+        //fprintf(wFile, ")");
         break;
+    case POW:
+        fprintf(wFile, "{");
+        wrTreeToFile(node->left, wFile);
+        fprintf(wFile, "}^{");
+        wrTreeToFile(node->right, wFile);
+        fprintf(wFile, "}");
+        // fprintf(wFile, ")");
+        break;
+
+    case SIN:
+        fprintf(wFile, "sin\\left(");
+        wrTreeToFile(node->left, wFile);
+        fprintf(wFile, "\\right)");
+        // fprintf(wFile, ")");
+        break;
+    
+    case LOG:
+        fprintf(wFile, "\\log_{");
+        wrTreeToFile(node->right, wFile);
+        fprintf(wFile, "} \\left(");
+        wrTreeToFile(node->left, wFile);
+        fprintf(wFile, "\\right)");
+        break;
+
+    case COS:
+        fprintf(wFile, "cos\\left(");
+        wrTreeToFile(node->left, wFile);
+        fprintf(wFile, "\\right)");
+        // fprintf(wFile, ")");
+        break;
+
     case NUM:
         fprintf(wFile, "%lg", node->number);
         break;

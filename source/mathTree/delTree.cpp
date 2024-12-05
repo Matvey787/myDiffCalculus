@@ -12,8 +12,9 @@ error delTree(node_t* node){
     assert(node != nullptr);
     if (node == nullptr)
         return NULLPTR_ERROR;
-
+    fprintf(stderr, "branches after node %p go free\n", node);
     delBranches(node);
+    fprintf(stderr, "node %p go free\n", node);
     free(node);
 
     node = nullptr;
@@ -39,12 +40,14 @@ static error delBranches(node_t* node){
 
     if (node->left != nullptr)
     {
+        fprintf(stderr, "node %p go free\n", node->left);
         free(node->left);
         node->left = nullptr;
     }
     
     if (node->right != nullptr)
     {
+        fprintf(stderr, "node %p go free\n", node->right);
         free(node->right);
         node->right = nullptr;
     }

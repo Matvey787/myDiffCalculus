@@ -36,6 +36,10 @@ static void writeTreeToDotFile(node_t* node, FILE** wFile, size_t rank){
     case MUL:
     case ADD:
     case SUB:
+    case POW:
+    case SIN:
+    case COS:
+    case LOG:
         fprintf(*wFile, "node%p [ shape=record, color = %s rank = %lu, label= \"{ %p | %s | {<n%p_l> left | <n%p_r> right}} \" ];\n", 
                           node, getColor(node->type), rank, node, convertTypeToStr(node->type), node, node);
         break;
@@ -72,6 +76,10 @@ static const char* getColor(types type)
     case SUB:
     case DIV:
     case MUL:
+    case POW:
+    case SIN:
+    case COS:
+    case LOG:
         return "red";
         break;
     case NUM:
@@ -101,11 +109,24 @@ static const char* convertTypeToStr(types type)
     case NUM:
         return "number";
         break;
+    case POW:
+        return "^";
+        break;
+    case SIN:
+        return "sin";
+        break;
+    case COS:
+        return "cos";
+        break;
+    case LOG:
+        return "log";
+        break;
     case VAR:
         return "variable";
         break;
     default:
         break;
     }
+    return "error";
 }
 

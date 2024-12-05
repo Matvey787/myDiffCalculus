@@ -9,9 +9,12 @@
 
 node_t* newNode(types type, const char* variable, double number, node_t* node_l, node_t* node_r){
     node_t* varNewNode = (node_t*)calloc(1, sizeof(node_t));
+
     varNewNode->type = type;
     varNewNode->number = number;
+    
     strcpy(varNewNode->variable, variable);
+    
     varNewNode->left = node_l;
     varNewNode->right = node_r;
     return varNewNode;
