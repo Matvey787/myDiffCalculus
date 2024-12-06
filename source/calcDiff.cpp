@@ -98,6 +98,9 @@ static node_t* calcDiff(node_t* node)
             node_t* cL = copySubtree(node->left);
             node_t* dL = calcDiff(node->left);
             node_t* minus_one = (node_t*)calloc(1, sizeof(node_t));
+            if (minus_one == nullptr)
+                printf("allocate memory fail\n");
+
             *minus_one = {ND_NUM, "no var", -1, nullptr, nullptr};
             return _newNode(MUL, _newNode(MUL, minus_one, _newNode(SIN, cL, nullptr)), dL);
         }

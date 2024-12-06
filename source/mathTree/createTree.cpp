@@ -33,6 +33,10 @@ void createTree(char** buffer, node_t* node){
         if (!isdigit(**buffer) && !isalpha(**buffer))
         {
             node->left = (node_t*)calloc(1, sizeof(node_t));
+            
+            if (node->left == nullptr)
+                printf("allocate memory fail\n");
+
             createTree(buffer, node->left);
             if (**buffer == '\n')
                 return;
@@ -45,6 +49,9 @@ void createTree(char** buffer, node_t* node){
             *buffer += 1;
             
             node->right = (node_t*)calloc(1, sizeof(node_t));
+            if (node->right == nullptr)
+                printf("allocate memory fail\n");
+
             createTree(buffer, node->right);
             if (**buffer == '\n')
                 return;

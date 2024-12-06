@@ -23,7 +23,10 @@ node_t* copyNode(node_t* node){
 node_t* copySubtree(node_t* node){
     assert(node != nullptr);
     node_t* varCopyNode = (node_t*)calloc(1, sizeof(node_t));
-    assert(varCopyNode != nullptr);
+    
+    if (varCopyNode == nullptr)
+        printf("allocate memory fail\n");
+
     varCopyNode->type = node->type;
     varCopyNode->number = node->number;
     strcpy(varCopyNode->variable, node->variable);

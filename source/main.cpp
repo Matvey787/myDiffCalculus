@@ -41,8 +41,14 @@ int main(int argc, char *argv[]){
     char* ptrStartBuff = buffer;
 
     node_t* mathTree = (node_t*)calloc(1, sizeof(node_t));
+
+    if (mathTree == nullptr)
+        printf("allocate memory fail\n");
+        
     node_t* nodes = (node_t*)calloc(60, sizeof(node_t));
-    
+    if (nodes == nullptr)
+        printf("allocate memory fail\n");
+
     if (*buffer++ == '$')
     {
         free(mathTree);
