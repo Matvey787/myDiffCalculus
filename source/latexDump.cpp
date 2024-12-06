@@ -32,35 +32,35 @@ void rewLatexFile(node_t* node, const char* fileName){
 static void wrTreeToFile(node_t* node, FILE* wFile){
     switch (node->type)
     {
-    case ADD:
+    case ND_ADD:
         fprintf(wFile, "(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, " + ");
         wrTreeToFile(node->right, wFile);
         fprintf(wFile, ")");
         break;
-    case SUB:
+    case ND_SUB:
         fprintf(wFile, "(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, " - ");
         wrTreeToFile(node->right, wFile);
         fprintf(wFile, ")");
         break;
-    case DIV:
+    case ND_DIV:
         fprintf(wFile, "\\frac{");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, "}{");
         wrTreeToFile(node->right, wFile);
         fprintf(wFile, "}");
         break;
-    case MUL:
+    case ND_MUL:
         //fprintf(wFile, "(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, " \\cdot ");
         wrTreeToFile(node->right, wFile);
         //fprintf(wFile, ")");
         break;
-    case POW:
+    case ND_POW:
         fprintf(wFile, "{");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, "}^{");
@@ -69,14 +69,14 @@ static void wrTreeToFile(node_t* node, FILE* wFile){
         // fprintf(wFile, ")");
         break;
 
-    case SIN:
+    case ND_SIN:
         fprintf(wFile, "sin\\left(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, "\\right)");
         // fprintf(wFile, ")");
         break;
     
-    case LOG:
+    case ND_LOG:
         fprintf(wFile, "\\log_{");
         wrTreeToFile(node->right, wFile);
         fprintf(wFile, "} \\left(");
@@ -84,19 +84,23 @@ static void wrTreeToFile(node_t* node, FILE* wFile){
         fprintf(wFile, "\\right)");
         break;
 
-    case COS:
+    case ND_COS:
         fprintf(wFile, "cos\\left(");
         wrTreeToFile(node->left, wFile);
         fprintf(wFile, "\\right)");
         // fprintf(wFile, ")");
         break;
 
-    case NUM:
+    case ND_NUM:
         fprintf(wFile, "%lg", node->number);
         break;
-    case VAR:
+    case ND_VAR:
         fprintf(wFile, "%s", node->variable);
         break;
+        
+    case ND_RCIB:
+    case ND_LCIB:
+    case ND_EOT:
     default:
         break;
     }

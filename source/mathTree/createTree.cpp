@@ -53,7 +53,7 @@ void createTree(char** buffer, node_t* node){
 
     }
     if (isdigit(**buffer)) {
-        node->type = NUM;
+        node->type = ND_NUM;
         sscanf(*buffer, "%lg", &number);
         node->number = number;
         strcpy(node->variable, "no var");
@@ -63,7 +63,7 @@ void createTree(char** buffer, node_t* node){
     } 
     else if (isalpha(**buffer)) 
     {
-        node->type = VAR;
+        node->type = ND_VAR;
         node->variable[0] = **buffer;
         node->variable[1] = '\0';
         node->number = NAN;
@@ -85,23 +85,23 @@ void createTree(char** buffer, node_t* node){
 types chooseType(char symbol){
     if (symbol == '+')
     {
-        return ADD;
+        return ND_ADD;
     }
     if (symbol == '-')
     {
-        return SUB;
+        return ND_SUB;
     }
     if (symbol == '*')
     {
-        return MUL;
+        return ND_MUL;
     }
     if (symbol == '/')
     {
-        return DIV;
+        return ND_DIV;
     }
     if (symbol == '^')
     {
-        return POW;
+        return ND_POW;
     }
-    return NUM;
+    return ND_NUM;
 }

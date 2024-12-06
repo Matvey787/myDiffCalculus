@@ -1,2 +1,8 @@
 o_files
 png_files
+.aux
+.dvi
+.fdb_latexmk
+.fls
+.log
+.gz

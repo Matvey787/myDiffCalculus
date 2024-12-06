@@ -26,7 +26,9 @@ int main(int argc, char *argv[]){
     else 
     {
         sprintf(directory, "%s", c_default_directory_for_saving_pictures);
-        system("mkdir -p png_files"); // FIXME
+        char command[c_length_of_strs] = {0};
+        sprintf(command, "mkdir -p %s", c_default_directory_for_saving_pictures);
+        system(command); // FIXME
     }
 
     char* buffer = nullptr;
@@ -44,9 +46,16 @@ int main(int argc, char *argv[]){
     if (*buffer++ == '$')
     {
         free(mathTree);
-        //mathTree = createTree2(&buffer);
-        mathTree = createTree3(nodes, buffer);
-        printf("%lg\n", mathTree->number);
+        if (*buffer == '$')
+        {
+            buffer++;
+            mathTree = crTree_by_tokens(nodes, buffer);
+        }
+        else 
+        {
+            mathTree = crTree_by_recursiveDescent(&buffer); // create tree by recursive descent
+        }
+        free(nodes);
     }
     else
     {
@@ -86,5 +95,4 @@ int main(int argc, char *argv[]){
     delTree(mathTree);
     //delTree(array[0]);
     free(ptrStartBuff);
-    free(nodes);
 }

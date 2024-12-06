@@ -32,25 +32,28 @@ static void writeTreeToDotFile(node_t* node, FILE** wFile, size_t rank){
 
     switch (node->type)
     {
-    case DIV:
-    case MUL:
-    case ADD:
-    case SUB:
-    case POW:
-    case SIN:
-    case COS:
-    case LOG:
+    case ND_DIV:
+    case ND_MUL:
+    case ND_ADD:
+    case ND_SUB:
+    case ND_POW:
+    case ND_SIN:
+    case ND_COS:
+    case ND_LOG:
         fprintf(*wFile, "node%p [ shape=record, color = %s rank = %lu, label= \"{ %p | %s | {<n%p_l> left | <n%p_r> right}} \" ];\n", 
                           node, getColor(node->type), rank, node, convertTypeToStr(node->type), node, node);
         break;
-    case NUM:
+    case ND_NUM:
         fprintf(*wFile, "node%p [ shape=record, color = %s rank = %lu, label= \"{ %p | %s | %lg | {<n%p_l> left | <n%p_r> right}} \" ];\n", 
                           node, getColor(node->type), rank, node, convertTypeToStr(node->type), node->number, node, node);
         break;
-    case VAR:
+    case ND_VAR:
         fprintf(*wFile, "node%p [ shape=record, color = %s rank = %lu, label= \"{ %p | %s | %s | {<n%p_l> left | <n%p_r> right}} \" ];\n", 
                           node, getColor(node->type), rank, node, convertTypeToStr(node->type), node->variable, node, node);
         break;
+    case ND_RCIB:
+    case ND_LCIB:
+    case ND_EOT:
     default:
         break;
     }
@@ -72,18 +75,25 @@ static const char* getColor(types type)
 {
     switch (type)
     {
-    case ADD:
-    case SUB:
-    case DIV:
-    case MUL:
-    case POW:
-    case SIN:
-    case COS:
-    case LOG:
+    case ND_ADD:
+    case ND_SUB:
+    case ND_DIV:
+    case ND_MUL:
+    case ND_POW:
+    case ND_SIN:
+    case ND_COS:
+    case ND_LOG:
         return "red";
         break;
-    case NUM:
-    case VAR:
+    case ND_NUM:
+    case ND_VAR:
+        return "blue";
+        break;
+    case ND_RCIB:
+    case ND_LCIB:
+    case ND_EOT:
+        return "yellow";
+        break;
     default:
         return "blue";
         break;
@@ -94,36 +104,39 @@ static const char* convertTypeToStr(types type)
 {
     switch (type)
     {
-    case ADD:
+    case ND_ADD:
         return "+";
         break;
-    case SUB:
+    case ND_SUB:
         return "-";
         break;
-    case MUL:
+    case ND_MUL:
         return "*";
         break;
-    case DIV:
+    case ND_DIV:
         return "/";\
         break; 
-    case NUM:
+    case ND_NUM:
         return "number";
         break;
-    case POW:
+    case ND_POW:
         return "^";
         break;
-    case SIN:
+    case ND_SIN:
         return "sin";
         break;
-    case COS:
+    case ND_COS:
         return "cos";
         break;
-    case LOG:
+    case ND_LOG:
         return "log";
         break;
-    case VAR:
+    case ND_VAR:
         return "variable";
         break;
+    case ND_LCIB:
+    case ND_RCIB:
+    case ND_EOT:
     default:
         break;
     }

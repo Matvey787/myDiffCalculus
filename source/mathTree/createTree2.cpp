@@ -42,9 +42,9 @@ static node_t* getE(char** exp)
         (*exp)++;
         node_t* val2 = getT(exp);
         if (op == '+')
-            val = newNode(ADD, "no var", NAN, val, val2);
+            val = newNode(ND_ADD, "no var", NAN, val, val2);
         else
-            val = newNode(SUB, "no var", NAN, val, val2);
+            val = newNode(ND_SUB, "no var", NAN, val, val2);
     }
     return val;
 }
@@ -59,9 +59,9 @@ static node_t* getT(char** exp)
         (*exp)++;
         node_t* val2 = getP(exp);
         if (op == '*')
-            val = newNode(MUL, "no var", NAN, val, val2);
+            val = newNode(ND_MUL, "no var", NAN, val, val2);
         else
-            val = newNode(DIV, "no var", NAN, val, val2);
+            val = newNode(ND_DIV, "no var", NAN, val, val2);
     }
     return val;
 }
@@ -107,7 +107,7 @@ static node_t* getSin(char** exp)
     if (**exp == 'n')
     {
         (*exp)++;
-        return newNode(SIN, "no var", NAN, getP(exp), nullptr);
+        return newNode(ND_SIN, "no var", NAN, getP(exp), nullptr);
     }
     else
     {
@@ -137,7 +137,7 @@ static node_t* getCos(char** exp)
     if (**exp == 's')
     {
         (*exp)++;
-        return newNode(COS, "no var", NAN, getP(exp), nullptr);
+        return newNode(ND_COS, "no var", NAN, getP(exp), nullptr);
     }
     else
     {
@@ -170,7 +170,7 @@ static node_t* getLog(char** exp)
         node_t* base = N_or_V(exp);
         node_t* arg = getP(exp);
         printf("-------%lg\n", base->number);
-        return newNode(LOG, "no var", NAN, arg, base);
+        return newNode(ND_LOG, "no var", NAN, arg, base);
     }
     else
     {
@@ -202,7 +202,7 @@ static node_t* getN(char** exp)
     if (old_ptr == *exp)
         syntaxError();
 
-    return newNode(NUM, "no var", val, nullptr, nullptr);
+    return newNode(ND_NUM, "no var", val, nullptr, nullptr);
 }
 
 static node_t* getV(char** exp)
@@ -216,7 +216,7 @@ static node_t* getV(char** exp)
     if (old_ptr == *exp)
         syntaxError();
 
-    return newNode(VAR, "x", NAN, nullptr, nullptr);
+    return newNode(ND_VAR, "x", NAN, nullptr, nullptr);
 }
 
 static void syntaxError()
@@ -225,7 +225,7 @@ static void syntaxError()
     exit(1);
 }
 
-node_t* createTree2(char** buffer){ // TODO rename
+node_t* crTree_by_recursiveDescent(char** buffer){
     assert(buffer != nullptr);
     assert(*buffer != nullptr);
     return getG(buffer);
