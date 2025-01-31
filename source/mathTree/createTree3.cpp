@@ -30,62 +30,62 @@ node_t* crTree_by_tokens(node_t* nodes, char* buffer){
     {
         if (*buffer == '$')
         {
-            nodes[i_nodes++] = {ND_EOT, "$", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_EOT, {0}, nullptr, nullptr};
             break;
         }
         if (sscanf(buffer, "%[^1234567890(]", tmpStr) == 1)
         {
             if (strcmp(tmpStr, "sin") == 0)
             {
-                nodes[i_nodes++] = {ND_SIN, "no var", NAN, nullptr, nullptr};
+                nodes[i_nodes++] = {ND_SIN, {0}, nullptr, nullptr};
                 buffer += strlen(tmpStr);
             }
             else if (strcmp(tmpStr, "cos") == 0)
             {
-                nodes[i_nodes++] = {ND_COS, "no var", NAN, nullptr, nullptr};
+                nodes[i_nodes++] = {ND_COS, {0}, nullptr, nullptr};
                 buffer += strlen(tmpStr);
             }
 
             else if (strcmp(tmpStr, "log") == 0)
             {
-                nodes[i_nodes++] = {ND_LOG, "no var", NAN, nullptr, nullptr};
+                nodes[i_nodes++] = {ND_LOG, {0}, nullptr, nullptr};
                 buffer += strlen(tmpStr);
             }
         }
         
         if (*buffer == '(')
         {
-            nodes[i_nodes++] = {ND_LCIB, "no var", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_LCIB, {0}, nullptr, nullptr};
             buffer += 1;
         }
 
         if (*buffer == ')')
         {
-            nodes[i_nodes++] = {ND_RCIB, "no var", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_RCIB, {0}, nullptr, nullptr};
             buffer += 1;
         }
         if (*buffer == '+')
         {
             //printf("++++++ %c\n", *buffer);
-            nodes[i_nodes++] = {ND_ADD, "no var", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_ADD, {0}, nullptr, nullptr};
             buffer += 1;
         }
 
         if (*buffer == '-')
         {
-            nodes[i_nodes++] = {ND_SUB, "no var", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_SUB, {0}, nullptr, nullptr};
             buffer += 1;
         }
 
         if (*buffer == '/')
         {
-            nodes[i_nodes++] = {ND_DIV, "no var", NAN, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_DIV, {0}, nullptr, nullptr};
             buffer += 1;
         }
             
         if (*buffer == '*')
             {
-                nodes[i_nodes++] = {ND_MUL, "no var", NAN, nullptr, nullptr};
+                nodes[i_nodes++] = {ND_MUL, {0}, nullptr, nullptr};
                 buffer += 1;
             }
         ////printf("--|||||-----%c\n", *buffer);
@@ -103,7 +103,8 @@ node_t* crTree_by_tokens(node_t* nodes, char* buffer){
         }
         if (isdigit(*buffer) && sscanf(buffer, "%lg", &tmpNum) == 1)
         {
-            nodes[i_nodes++] = {ND_NUM, "no var", tmpNum, nullptr, nullptr};
+            nodes[i_nodes++] = {ND_NUM, {0}, nullptr, nullptr};
+            nodes->data.num = tmpNum;
             snprintf(tmpStr, 100, "%lg", tmpNum);
             ////printf("%d\n", strlen(tmpStr));
             buffer += strlen(tmpStr);
@@ -138,10 +139,10 @@ node_t* getE(node_t** nodes)
         if (op == ND_ADD)
         {
             //printf("add work\n");
-            l_subtree = newNode(ND_ADD, "no var", NAN, l_subtree, r_subtree);
+            l_subtree = newNode(ND_ADD, {0}, l_subtree, r_subtree);
         }
         else
-            l_subtree = newNode(ND_SUB, "no var", NAN, l_subtree, r_subtree);
+            l_subtree = newNode(ND_SUB, {0}, l_subtree, r_subtree);
     }
     return l_subtree;
 }
@@ -156,9 +157,9 @@ node_t* getT(node_t** nodes)
         node_t* r_subtree = getPOW(nodes);
 
         if (op == ND_MUL)
-            l_subtree = newNode(ND_MUL, "no var", NAN, l_subtree, r_subtree);
+            l_subtree = newNode(ND_MUL, {0}, l_subtree, r_subtree);
         else
-            l_subtree = newNode(ND_DIV, "no var", NAN, l_subtree, r_subtree);
+            l_subtree = newNode(ND_DIV, {0}, l_subtree, r_subtree);
     }
     return l_subtree;
 }
@@ -171,7 +172,7 @@ node_t* getPOW(node_t** nodes)
         (*nodes)++;
         node_t* r_subtree = getP(nodes);
 
-        l_subtree = newNode(ND_POW, "no var", NAN, l_subtree, r_subtree);
+        l_subtree = newNode(ND_POW, {0}, l_subtree, r_subtree);
     }
     return l_subtree;
 }

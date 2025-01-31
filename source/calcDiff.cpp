@@ -4,8 +4,8 @@
 #include <assert.h>
 #include <string.h>
 #include <math.h>
-#include "mathTree.h"
-#include "calcDiff.h"
+#include "../include/mathTree.h"
+#include "../include/calcDiff.h"
 #include "constants.h"
 
 static node_t* calcDiff(node_t* node);
@@ -16,18 +16,25 @@ node_t* getDiff(node_t* operandTree){
     return resultTree;
 }
 
-#define _newNode(name, l_subtr, r_subtr) newNode(ND_##name, "no var", NAN, l_subtr, r_subtr)
-#define _newNode2(name, num) newNode(ND_##name, "no var", num, nullptr, nullptr)
+#define _newNode(name, l_subtr, r_subtr) newNode(ND_##name, {0}, l_subtr, r_subtr)
+#define _newNode2(name, data)                          \
+            newNode(ND_##name, data, nullptr, nullptr) 
+        
 
 static node_t* calcDiff(node_t* node)
 {
+    assert(node != nullptr);
+    data_u data = {0};
     switch (node->type)
     {
     case ND_NUM:
-        return _newNode2(NUM, 0);
+        return _newNode2(NUM, data);
 
     case ND_VAR:
-        return _newNode2(NUM, 1);
+    {
+        data.num = 1;
+        return _newNode2(NUM, data);
+    }
 
     case ND_ADD:
         return _newNode(ADD, calcDiff(node->left), calcDiff(node->right));
@@ -42,13 +49,13 @@ static node_t* calcDiff(node_t* node)
         if (node->left->type == ND_NUM)
         {
             if (node->right->type == ND_NUM)
-                return newNode(ND_NUM, "no var", 0, nullptr, nullptr);
+                return newNode(ND_NUM, {0}, nullptr, nullptr);
             
-            ////printf("pow worked\n");
             node_t* cL = copySubtree(node->left);
             node_t* cR = copySubtree(node->right);
             node_t* dR = calcDiff(node->right);
-            return _newNode(MUL, _newNode(MUL, cR, _newNode(LOG, cL, _newNode2(NUM, c_exp))), dR);
+            data.num = c_exp;
+            return _newNode(MUL, _newNode(MUL, cR, _newNode(LOG, cL, _newNode2(NUM, data))), dR);
         }
         else
         {   
@@ -57,7 +64,7 @@ static node_t* calcDiff(node_t* node)
             node_t* cR1 = copySubtree(node->right);
             node_t* cR2 = copySubtree(node->right);
             node_t* dL = calcDiff(node->left);
-            cR1->number -= 1;
+            cR1->data.num -= 1;
             return _newNode(MUL, _newNode(MUL, cR2, _newNode(POW, cL, cR1)), dL);
         }
             
@@ -95,13 +102,14 @@ static node_t* calcDiff(node_t* node)
     {
         if (node->left != nullptr)
         {
+            printf("I see cos!\n");
             node_t* cL = copySubtree(node->left);
             node_t* dL = calcDiff(node->left);
             node_t* minus_one = (node_t*)calloc(1, sizeof(node_t));
             if (minus_one == nullptr)
                 printf("allocate memory fail\n");
-
-            *minus_one = {ND_NUM, "no var", -1, nullptr, nullptr};
+            data.num = -1;
+            *minus_one = {ND_NUM, data, nullptr, nullptr};
             return _newNode(MUL, _newNode(MUL, minus_one, _newNode(SIN, cL, nullptr)), dL);
         }
         break;
@@ -110,16 +118,40 @@ static node_t* calcDiff(node_t* node)
     {
         if (node->left != nullptr && node->right != nullptr)
         {
+            data_u dataForExp = {c_exp};
             node_t* cL = copySubtree(node->left);
             node_t* cR = copySubtree(node->right);
             node_t* dL = calcDiff(node->left);
-            return _newNode(MUL, _newNode(DIV, newNode(ND_NUM, "no var", 1, nullptr, nullptr), _newNode(MUL, cL, _newNode(LOG, cR, newNode(ND_NUM, "no var", c_exp, nullptr, nullptr)))), dL);
+            data.num = 1;
+            return _newNode(MUL, _newNode(DIV, _newNode2(NUM, data), 
+                                               _newNode (MUL, cL, _newNode(LOG, cR, newNode(ND_NUM, dataForExp, nullptr, nullptr)))), dL);
         }
         break;   
     }
     case ND_RCIB:
+    case ND_SQRT:
     case ND_LCIB:
     case ND_EOT:
+    case ND_LCUB:
+    case ND_RCUB:
+    case ND_IF:
+    case ND_EQ:
+    case ND_FOR:
+    case ND_SEP:
+    case ND_POADD: 
+    case ND_ISEQ:
+    case ND_NISEQ: 
+    case ND_LS:
+    case ND_AB:
+    case ND_LSE:
+    case ND_ABE:
+    case ND_ENDFOR:
+    case ND_PR:
+    case ND_FUN:
+    case ND_RET:
+    case ND_FUNCALL:
+    case ND_GET:
+    case ND_GETDIFF:
     default:
         break;
     }

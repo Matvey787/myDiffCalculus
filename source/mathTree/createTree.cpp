@@ -44,8 +44,8 @@ void createTree(char** buffer, node_t* node){
             while (isspace(**buffer)) *buffer += 1;
 
             node->type = chooseType(**buffer);
-            node->number = NAN;
-            strcpy(node->variable, "no var");
+            node->data.num = NAN;
+            node->data.var->str = nullptr;
             *buffer += 1;
             
             node->right = (node_t*)calloc(1, sizeof(node_t));

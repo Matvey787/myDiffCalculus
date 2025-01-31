@@ -1,4 +1,4 @@
-#include <stdio.h>
+/* #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -18,4 +18,4 @@ node_t* newNode(types type, const char* variable, double number, node_t* node_l,
     varNewNode->left = node_l;
     varNewNode->right = node_r;
     return varNewNode;
-}
+} */
