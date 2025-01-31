@@ -10,11 +10,13 @@
 // rm -rf png_files
 #include "../../General/treeTransfer/treeTransfer.h"
 #include "../include/mathTree.h"
+#include "../include/latexDump.h"
 #include "../include/constants.h"
 #include "../include/calcDiff.h"
 #include "../include/readFile.h"
 #include "../../General/graphDump/graphDump.h"
 #include "../../General/programTree/tree.h"
+
 
 void delTable(nameTable_t* nameTable);
 
@@ -46,9 +48,10 @@ int main(int argc, char *argv[]){
         node_t* mathTree = pullTree(&nameTable, "../progTree");
         writeDotFile(mathTree, "../dot_files/test.dot");
         writePngFile("../dot_files/test.dot", directory, "white");
-        printf("tree getted in diff\n");
+        printf("------------------------------------------------------------------------------------tree getted in diff\n");
         getchar();
         mathTree = getDiff(mathTree);
+        wrLatexFile(mathTree, "/home/matvey/Рабочий стол/C/myProgLanguage/myDiffCalculus/document.tex");
         writeDotFile(mathTree, "../dot_files/test.dot");
         writePngFile("../dot_files/test.dot", directory, "white");
         printf("tree after diff\n");
@@ -60,7 +63,7 @@ int main(int argc, char *argv[]){
     else if (mode == '2')
     {
 
-
+ 
         // from old project for analize math expression (not work with new structure) !!!!
         // from old project for analize math expression (not work with new structure) !!!!
         // from old project for analize math expression (not work with new structure) !!!!
